@@ -11,6 +11,8 @@ public class Player : BaseCharacter
 
     private Vector3 cameraOffset;
 
+    public PlayerXP playerXP;
+    
     new protected void Awake()
     {
         base.Awake();
@@ -38,6 +40,18 @@ public class Player : BaseCharacter
             targetPos.y = transform.position.y;
             transform.LookAt(targetPos);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
+            trigger.OnEnter();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
+            trigger.OnExit();
     }
 
     private void OnDestroy()
