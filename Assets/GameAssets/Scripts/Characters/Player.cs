@@ -22,10 +22,19 @@ public class Player : BaseCharacter
         cameraOffset = Camera.main.transform.position - transform.position;
     }
 
+    protected override void OnDamaged()
+    {
+        var healthBar = HealthBar.Instance;
+        healthBar.Health = Mathf.CeilToInt(health / maxHealth * healthBar.MaxHealth);
+    }
+
     protected override void OnDeath()
     {
         Debug.Log("Game Over");
+
+        // Debug
         health = maxHealth;
+        OnDamaged();
     }
 
     private void Update()
