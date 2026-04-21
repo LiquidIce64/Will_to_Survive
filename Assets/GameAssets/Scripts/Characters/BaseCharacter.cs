@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 abstract public class BaseCharacter : MonoBehaviour
@@ -29,13 +30,12 @@ abstract public class BaseCharacter : MonoBehaviour
 
     public void ApplyDamage(float damage)
     {
-        health -= damage / damageResistance;
-        if (health <= 0f)
-        {
-            health = 0f;
-            OnDeath();
-        }
+        health = Mathf.Clamp(health - damage / damageResistance, 0f, maxHealth);
+        OnDamaged();
+        if (health == 0f) OnDeath();
     }
+
+    virtual protected void OnDamaged() { }
 
     abstract protected void OnDeath();
 }
