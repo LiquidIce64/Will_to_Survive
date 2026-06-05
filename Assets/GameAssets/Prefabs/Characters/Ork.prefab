@@ -58,6 +58,8 @@ MonoBehaviour:
   attackDistance: 9
   minAttackDistance: 8
   aimingTime: 2
+  xpDrop: 5
+  xpPrefab: {fileID: 5425140742718145606, guid: 468a8b533f510ee4dafa50a25fd494cc, type: 3}
 --- !u!114 &8336206576305884103
 MonoBehaviour:
   m_ObjectHideFlags: 0
