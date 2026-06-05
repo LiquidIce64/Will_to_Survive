@@ -213,8 +213,8 @@ MonoBehaviour:
   damageResistance: 1
   knockbackResistance: 1
   playerXP:
-    baseRequiredXp: 100
-    xpPerLevel: 50
+    baseRequiredXp: 20
+    xpPerLevel: 10
     xp: 0
     level: 0
     levelGained:

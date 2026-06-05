@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour, ITriggerable
     [SerializeField] private bool damageOnImpact = true;
     public ProjectileWeapon weapon;
     private Rigidbody rb;
+    private bool exploded = false;
 
     private void Start()
     {
@@ -24,6 +25,8 @@ public class Projectile : MonoBehaviour, ITriggerable
 
     private void Explode()
     {
+        if (exploded) return;
+        exploded = true;
         if (weapon.range > 0f)
         {
             foreach (Collider c in Physics.OverlapSphere(
