@@ -63,17 +63,23 @@ public class Enemy : BaseCharacter
 
     virtual protected void EnemyLogic()
     {
-        var distance = Vector3.Distance(Player.Instance.transform.position, transform.position);
+        Vector3 playerDirection = Player.Instance.transform.position - transform.position;
+        float distance = playerDirection.magnitude;
+        playerDirection.Normalize();
+        bool lineOfSight = !Physics.Raycast(
+            transform.position, playerDirection, distance, LayerMask.GetMask("Default")
+        );
+
         switch (_state)
         {
             case NPCState.Follow:
                 FollowPlayer();
-                if (distance <= attackDistance)
+                if (lineOfSight && distance <= attackDistance)
                     _state = NPCState.Attack;
                 break;
             case NPCState.Attack:
                 Attack();
-                if (distance > maxAttackDistance)
+                if (!lineOfSight || distance > maxAttackDistance)
                     _state = NPCState.Follow;
                 else if (distance < minAttackDistance)
                     _state = NPCState.Retreat;

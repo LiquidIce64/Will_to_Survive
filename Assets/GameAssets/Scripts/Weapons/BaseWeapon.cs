@@ -2,14 +2,16 @@ using UnityEngine;
 
 abstract public class BaseWeapon : MonoBehaviour
 {
-    [SerializeField] protected float damage = 1f;
-    [SerializeField] protected float knockback = 1f;
-    [SerializeField] protected float selfKnockback = 0f;
-    [SerializeField] protected float range = 1f;
-    [SerializeField] protected float fireRate = 1f;
-    [SerializeField] protected float accuracy = 1f;
+    public float damage = 1f;
+    public float knockback = 1f;
+    public float selfKnockback = 0f;
+    public float range = 1f;
+    public float fireRate = 1f;
+    public float accuracy = 1f;
     protected float _cooldown = 0f;
     protected BaseCharacter owner;
+
+    public BaseCharacter Owner => owner;
 
     public float RemainingCooldown => _cooldown;
 
@@ -20,7 +22,7 @@ abstract public class BaseWeapon : MonoBehaviour
         return vec.normalized;
     }
 
-    protected bool IsTarget(BaseCharacter character)
+    public bool IsTarget(BaseCharacter character)
     {
         if (owner is Player) return character != owner;
 

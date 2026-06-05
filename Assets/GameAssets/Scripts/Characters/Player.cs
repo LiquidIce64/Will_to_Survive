@@ -13,6 +13,8 @@ public class Player : BaseCharacter
 
     public PlayerXP playerXP;
 
+    public SphereCollider xpMagnet;
+
     private Vector3 targetPos;
     
     new protected void Awake()
@@ -57,18 +59,6 @@ public class Player : BaseCharacter
             if (weapon == null) return;
             weapon.Use(targetPos);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
-            trigger.OnEnter();
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
-            trigger.OnExit();
     }
 
     private void OnDestroy()

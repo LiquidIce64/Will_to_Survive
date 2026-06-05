@@ -7,7 +7,10 @@ public class XPOrb : MonoBehaviour, ITriggerable
     private float posLerp = 0f;
     public float xp = 1f;
 
-    public void OnEnter() => enabled = true;
+    public void OnEnter(BaseCharacter character)
+    {
+        if (character is Player) enabled = true;
+    }
 
     private void Start()
     {

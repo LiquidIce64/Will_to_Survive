@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Melee : BaseWeapon
+public class MeleeWeapon : BaseWeapon
 {
     [SerializeField] protected float sweepAngle = 45f;
 

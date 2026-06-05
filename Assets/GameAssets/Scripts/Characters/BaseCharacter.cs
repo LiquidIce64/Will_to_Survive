@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 abstract public class BaseCharacter : MonoBehaviour
@@ -40,4 +39,16 @@ abstract public class BaseCharacter : MonoBehaviour
     virtual protected void OnDamaged() { }
 
     abstract protected void OnDeath();
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
+            trigger.OnEnter(this);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
+            trigger.OnExit(this);
+    }
 }
