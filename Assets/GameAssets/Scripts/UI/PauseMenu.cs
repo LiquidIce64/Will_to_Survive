@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -8,18 +7,20 @@ public class PauseMenu : MonoBehaviour
     public bool PauseGame;
     public GameObject pauseGameMenu;
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        Player.InputActions.UI.Pause.started += TogglePause;
+    }
+
+    private void TogglePause(InputAction.CallbackContext context)
+    {
+        if (PauseGame)
         {
-            if (PauseGame)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
