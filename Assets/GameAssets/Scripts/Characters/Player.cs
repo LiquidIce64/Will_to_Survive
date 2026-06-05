@@ -12,6 +12,8 @@ public class Player : BaseCharacter
     private Vector3 cameraOffset;
 
     public PlayerXP playerXP;
+
+    private Vector3 targetPos;
     
     new protected void Awake()
     {
@@ -45,9 +47,15 @@ public class Player : BaseCharacter
         Vector2 mousePos = inputActions.Player.Look.ReadValue<Vector2>();
         if (Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out RaycastHit hit))
         {
-            Vector3 targetPos = hit.point;
+            targetPos = hit.point;
             targetPos.y = transform.position.y;
             transform.LookAt(targetPos);
+        }
+
+        if(inputActions.Player.Attack.IsPressed())
+        {
+            if (weapon == null) return;
+            weapon.Use(targetPos);
         }
     }
 

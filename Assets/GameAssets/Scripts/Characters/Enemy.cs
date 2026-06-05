@@ -53,9 +53,12 @@ public class Enemy : BaseCharacter
     {
         agent.ResetPath();
         if (_remainingAimTime > 0f)
+        {
             _remainingAimTime -= Time.fixedDeltaTime;
             return;
-        // Fire
+        }
+        if (weapon == null) return;
+        weapon.Use(Player.Instance.transform.position);
     }
 
     virtual protected void EnemyLogic()
