@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 abstract public class BaseCharacter : MonoBehaviour
@@ -8,11 +7,13 @@ abstract public class BaseCharacter : MonoBehaviour
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected float damageResistance = 1f;
     [SerializeField] protected float knockbackResistance = 1f;
+    protected BaseWeapon weapon;
     protected Rigidbody rb;
     protected float health;
 
     protected void Awake()
     {
+        TryGetComponent(out weapon);
         rb = GetComponent<Rigidbody>();
         health = maxHealth;
     }
@@ -38,4 +39,16 @@ abstract public class BaseCharacter : MonoBehaviour
     virtual protected void OnDamaged() { }
 
     abstract protected void OnDeath();
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
+            trigger.OnEnter(this);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out ITriggerable trigger))
+            trigger.OnExit(this);
+    }
 }

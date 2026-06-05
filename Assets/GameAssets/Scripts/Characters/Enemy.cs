@@ -16,6 +16,8 @@ public class Enemy : BaseCharacter
     [SerializeField] protected float attackDistance = 5f;
     [SerializeField] protected float minAttackDistance = 2.5f;
     [SerializeField] protected float aimingTime = 1f;
+    [SerializeField] protected float xpDrop = 1f;
+    [SerializeField] protected GameObject xpPrefab;
     protected float _remainingAimTime;
     protected NPCState _state = NPCState.Follow;
 
@@ -53,24 +55,33 @@ public class Enemy : BaseCharacter
     {
         agent.ResetPath();
         if (_remainingAimTime > 0f)
+        {
             _remainingAimTime -= Time.fixedDeltaTime;
             return;
-        // Fire
+        }
+        if (weapon == null) return;
+        weapon.Use(Player.Instance.transform.position);
     }
 
     virtual protected void EnemyLogic()
     {
-        var distance = Vector3.Distance(Player.Instance.transform.position, transform.position);
+        Vector3 playerDirection = Player.Instance.transform.position - transform.position;
+        float distance = playerDirection.magnitude;
+        playerDirection.Normalize();
+        bool lineOfSight = !Physics.Raycast(
+            transform.position, playerDirection, distance, LayerMask.GetMask("Default")
+        );
+
         switch (_state)
         {
             case NPCState.Follow:
                 FollowPlayer();
-                if (distance <= attackDistance)
+                if (lineOfSight && distance <= attackDistance)
                     _state = NPCState.Attack;
                 break;
             case NPCState.Attack:
                 Attack();
-                if (distance > maxAttackDistance)
+                if (!lineOfSight || distance > maxAttackDistance)
                     _state = NPCState.Follow;
                 else if (distance < minAttackDistance)
                     _state = NPCState.Retreat;
@@ -99,6 +110,17 @@ public class Enemy : BaseCharacter
 
     override protected void OnDeath()
     {
+        Vector3 pos;
+        if (Physics.Raycast(transform.position, Vector3.down, out var hit, 10f, LayerMask.GetMask("Default")))
+        {
+            pos = hit.point;
+            pos += xpPrefab.transform.position;
+        }
+        else pos = transform.position;
+
+        var obj = Instantiate(xpPrefab, pos, Quaternion.identity);
+        if (obj.TryGetComponent(out XPOrb orb))
+            orb.xp = xpDrop;
         Destroy(gameObject);
     }
 }
