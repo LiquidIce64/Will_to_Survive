@@ -7,7 +7,7 @@ abstract public class BaseWeapon : MonoBehaviour
     public float selfKnockback = 0f;
     public float range = 1f;
     public float fireRate = 1f;
-    public float accuracy = 1f;
+    public float horizontalSpread = 10f;
     protected float _cooldown = 0f;
     protected BaseCharacter owner;
 

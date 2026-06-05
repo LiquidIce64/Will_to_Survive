@@ -238,7 +238,7 @@ MonoBehaviour:
   selfKnockback: 0
   range: 2
   fireRate: 1
-  accuracy: 0
+  horizontalSpread: 0
   projectilePrefab: {fileID: 1356768817023988055, guid: a6411c7fe3d5fc940a11288252f87c8e, type: 3}
 --- !u!54 &1017053875597583394
 Rigidbody:

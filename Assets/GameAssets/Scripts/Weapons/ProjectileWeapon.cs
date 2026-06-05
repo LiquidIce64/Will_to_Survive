@@ -8,6 +8,7 @@ public class ProjectileWeapon : BaseWeapon
     {
         var obj = Instantiate(projectilePrefab, owner.transform.position, owner.transform.rotation);
         obj.transform.LookAt(targetPos);
+        obj.transform.Rotate(transform.up, Random.Range(-horizontalSpread, horizontalSpread) / 2);
 
         if (!obj.TryGetComponent<Projectile>(out var projectile))
         {

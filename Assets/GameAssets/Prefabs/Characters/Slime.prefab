@@ -77,8 +77,7 @@ MonoBehaviour:
   selfKnockback: 0
   range: 1.5
   fireRate: 1
-  accuracy: 1
-  sweepAngle: 45
+  horizontalSpread: 90
 --- !u!195 &2043068898829462811
 NavMeshAgent:
   m_ObjectHideFlags: 0
