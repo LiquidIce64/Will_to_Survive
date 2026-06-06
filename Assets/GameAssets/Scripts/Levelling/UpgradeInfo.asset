@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7196e31e927de542abdc6c3c7ed580e, type: 3}
+  m_Name: UpgradeInfo
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeInfo
+  damageUpgrade:
+    icon: {fileID: 0}
+    description: Increase damage dealt to enemies by 50%
+    multiplier: 1.5
+  speedUpgrade:
+    icon: {fileID: 0}
+    description: Increase movement speed by 20%
+    multiplier: 1.2
+  fireRateUpgrade:
+    icon: {fileID: 0}
+    description: Increase fire rate by 25%
+    multiplier: 1.25
+  explosionRadiusUpgrade:
+    icon: {fileID: 0}
+    description: Increase fireball explosion radius by 50%
+    multiplier: 1.5
+  xpMagnetUpgrade:
+    icon: {fileID: 0}
+    description: Increase experience pickup range by 50%
+    multiplier: 1.5
+  shockwaveUpgrade:
+    icon: {fileID: 0}
+    description: Knock back enemies around you every few seconds
+    shockwavePrefab: {fileID: 7966461660750304145, guid: 27d5674cdadd2514f8760ae6786633a2, type: 3}
+  healthUpgrade:
+    icon: {fileID: 0}
+    description: Double your max health
+    multiplier: 2

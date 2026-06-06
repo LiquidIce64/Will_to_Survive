@@ -194,6 +194,7 @@ Transform:
   - {fileID: 7229767364695181042}
   - {fileID: 4388672151196998147}
   - {fileID: 5697928159409305620}
+  - {fileID: 7894997415501887863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8406276337800951290
@@ -219,7 +220,19 @@ MonoBehaviour:
     level: 0
     levelGained:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: 1d4c211be11af024cb8cdfa26bedb8d8, type: 2}
+          m_TargetAssemblyTypeName: UpgradeInfo, Assembly-CSharp
+          m_MethodName: ApplyRandomUpgrade
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
   xpMagnet: {fileID: 6096151751435498762}
 --- !u!114 &7823915758016914615
 MonoBehaviour:
@@ -347,6 +360,57 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7539611770828847457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7894997415501887863}
+  - component: {fileID: 2116793586705727025}
+  m_Layer: 3
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7894997415501887863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539611770828847457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5239400354408452631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116793586705727025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539611770828847457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7a56673973a0c4dbe5e9ccdada4907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  baseSpawnInterval: 2
+  spawnIntervalRandomness: 1
+  intervalLevelMultiplier: 0.9
+  enemyPresets:
+  - {fileID: 6123367936167739595, guid: 1db6f2366d875034fa8f918ba00ea136, type: 3}
+  - {fileID: 3784672564704464152, guid: 4f3e7ad4a2118874c8bfac8f36ce137e, type: 3}
+  - {fileID: 3784672564704464152, guid: 0bd158c874958164bbb6ba2a2dbff8a1, type: 3}
 --- !u!1001 &139179474969947734
 PrefabInstance:
   m_ObjectHideFlags: 0
