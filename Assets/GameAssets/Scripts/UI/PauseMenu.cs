@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
     public bool PauseGame;
     public GameObject pauseGameMenu;
 
-    private void Awake()
+    private void Start()
     {
         Player.InputActions.UI.Pause.started += TogglePause;
     }

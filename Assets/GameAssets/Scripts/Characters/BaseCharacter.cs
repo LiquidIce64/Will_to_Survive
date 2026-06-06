@@ -3,13 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 abstract public class BaseCharacter : MonoBehaviour
 {
-    [SerializeField] protected float speed = 200f;
-    [SerializeField] protected float maxHealth = 100f;
-    [SerializeField] protected float damageResistance = 1f;
-    [SerializeField] protected float knockbackResistance = 1f;
+    public float speed = 200f;
+    public float maxHealth = 100f;
+    public float damageResistance = 1f;
+    public float knockbackResistance = 1f;
     protected BaseWeapon weapon;
     protected Rigidbody rb;
     protected float health;
+
+    public BaseWeapon Weapon => weapon;
 
     protected void Awake()
     {
