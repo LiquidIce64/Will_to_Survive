@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ab158ff70eaff8f46b7d16ca803e49e0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cardImage: {instanceID: 0}
+  - damageCard: {fileID: 4202025379388359055, guid: af39aabb06f877f4ba1db6028cedb716, type: 3}
+  - attackSpeedCard: {fileID: 4164690741311793804, guid: a56e50a5a59fc7e4b8a038c6afd22a7e, type: 3}
+  - xpMagnetCard: {fileID: 6648174609997180606, guid: f242acb7dd971da48b428a3385abcde6, type: 3}
+  - explosionRadiusCard: {fileID: -3166573690098400175, guid: 8219aba84e12ec84db701a8edd230e48, type: 3}
+  - healthCard: {fileID: -2344910081636308886, guid: bc4935827238fb44094c429ff650c2f7, type: 3}
+  - walkSpeedCard: {fileID: -2081436207871814433, guid: 9b020739489516140bdcdcd3b33a0d47, type: 3}
+  - shockwaveCard: {fileID: 7850957687847233712, guid: 0258df1528d30f848b59eadab9b0f2a1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
