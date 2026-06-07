@@ -18,6 +18,7 @@ public class Enemy : BaseCharacter
     [SerializeField] protected float aimingTime = 1f;
     [SerializeField] protected float xpDrop = 1f;
     [SerializeField] protected GameObject xpPrefab;
+    [SerializeField] protected EnemyHealthBar healthBar;
     protected float _remainingAimTime;
     protected NPCState _state = NPCState.Follow;
 
@@ -106,6 +107,11 @@ public class Enemy : BaseCharacter
 
         Vector3 desiredVel = agent.desiredVelocity.normalized;
         Move(new Vector2(desiredVel.x, desiredVel.z));
+    }
+
+    override protected void OnDamaged()
+    {
+        healthBar.SetHealth(health / maxHealth);
     }
 
     override protected void OnDeath()
