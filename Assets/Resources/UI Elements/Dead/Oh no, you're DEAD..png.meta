@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 3034fac8a75459d4690b5b2274495862
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8076327622308718585
+    second: Oh no, you're DEAD._0
+  - first:
+      213: -1252360411005959671
+    second: Oh no, you're DEAD._1
+  - first:
+      213: 5511461133520318721
+    second: Oh no, you're DEAD._2
+  - first:
+      213: 4904620636335183302
+    second: Oh no, you're DEAD._3
+  - first:
+      213: -5120603065069773592
+    second: Oh no, you're DEAD._4
+  - first:
+      213: -3277080809174793683
+    second: Oh no, you're DEAD._5
+  - first:
+      213: -4654619062551106115
+    second: Oh no, you're DEAD._6
+  - first:
+      213: -9087534291030461793
+    second: Oh no, you're DEAD._7
+  - first:
+      213: -6795486004172249385
+    second: Oh no, you're DEAD._8
+  - first:
+      213: 5860915889837552911
+    second: Oh no, you're DEAD._9
+  - first:
+      213: -6913553318575809144
+    second: Oh no, you're DEAD._10
+  - first:
+      213: -4598256888493500341
+    second: Oh no, you're DEAD._11
+  - first:
+      213: -3898748170700793493
+    second: Oh no, you're DEAD._12
+  - first:
+      213: -2941153981932993455
+    second: Oh no, you're DEAD._13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 122
+        width: 371
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7e269ae21e41070800000000000000
+      internalID: 8076327622308718585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._1
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 122
+        width: 282
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9024a3b67d8be9ee0800000000000000
+      internalID: -1252360411005959671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._2
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 172
+        width: 292
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 101b9d033b4ac7c40800000000000000
+      internalID: 5511461133520318721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._3
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 2
+        width: 302
+        height: 402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c51fc2ab76b01440800000000000000
+      internalID: 4904620636335183302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._4
+      rect:
+        serializedVersion: 2
+        x: 2679
+        y: 382
+        width: 52
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ec5db674a6ffe8b0800000000000000
+      internalID: -5120603065069773592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._5
+      rect:
+        serializedVersion: 2
+        x: 2769
+        y: 112
+        width: 252
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2203e4ed587582d0800000000000000
+      internalID: -3277080809174793683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._6
+      rect:
+        serializedVersion: 2
+        x: 3039
+        y: 172
+        width: 282
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd21e3bf98776fb0800000000000000
+      internalID: -4654619062551106115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._7
+      rect:
+        serializedVersion: 2
+        x: 3499
+        y: 132
+        width: 332
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f92b2fac5b792e180800000000000000
+      internalID: -9087534291030461793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._8
+      rect:
+        serializedVersion: 2
+        x: 3819
+        y: 122
+        width: 1012
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6ac25bb7591b1a0800000000000000
+      internalID: -6795486004172249385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._9
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 122
+        width: 262
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f05b53803f7265150800000000000000
+      internalID: 5860915889837552911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._10
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 92
+        width: 72
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88dd096e2ef1e00a0800000000000000
+      internalID: -6913553318575809144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._11
+      rect:
+        serializedVersion: 2
+        x: 2089
+        y: 122
+        width: 262
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b481a57f8b5bf20c0800000000000000
+      internalID: -4598256888493500341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._12
+      rect:
+        serializedVersion: 2
+        x: 2379
+        y: 162
+        width: 262
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b69dca8f13dd4e9c0800000000000000
+      internalID: -3898748170700793493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oh no, you're DEAD._13
+      rect:
+        serializedVersion: 2
+        x: 4869
+        y: 122
+        width: 72
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 154882d490cee27d0800000000000000
+      internalID: -2941153981932993455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Oh no, you're DEAD._0: 8076327622308718585
+      Oh no, you're DEAD._1: -1252360411005959671
+      Oh no, you're DEAD._10: -6913553318575809144
+      Oh no, you're DEAD._11: -4598256888493500341
+      Oh no, you're DEAD._12: -3898748170700793493
+      Oh no, you're DEAD._13: -2941153981932993455
+      Oh no, you're DEAD._2: 5511461133520318721
+      Oh no, you're DEAD._3: 4904620636335183302
+      Oh no, you're DEAD._4: -5120603065069773592
+      Oh no, you're DEAD._5: -3277080809174793683
+      Oh no, you're DEAD._6: -4654619062551106115
+      Oh no, you're DEAD._7: -9087534291030461793
+      Oh no, you're DEAD._8: -6795486004172249385
+      Oh no, you're DEAD._9: 5860915889837552911
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
