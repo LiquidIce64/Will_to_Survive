@@ -36,9 +36,7 @@ public class Player : BaseCharacter
     {
         Debug.Log("Game Over");
 
-        // Debug
-        health = maxHealth;
-        OnDamaged();
+        DeadMenuManager.Instance.ShowDeadMenu();
     }
 
     private void Update()
