@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: UpgradeInfo
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeInfo
   damageUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: 4202025379388359055, guid: af39aabb06f877f4ba1db6028cedb716, type: 3}
     description: Increase damage dealt to enemies by 50%
     multiplier: 1.5
   speedUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: -2081436207871814433, guid: 9b020739489516140bdcdcd3b33a0d47, type: 3}
     description: Increase movement speed by 20%
     multiplier: 1.2
   fireRateUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: 4164690741311793804, guid: a56e50a5a59fc7e4b8a038c6afd22a7e, type: 3}
     description: Increase fire rate by 25%
     multiplier: 1.25
   explosionRadiusUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: -3166573690098400175, guid: 8219aba84e12ec84db701a8edd230e48, type: 3}
     description: Increase fireball explosion radius by 50%
     multiplier: 1.5
   xpMagnetUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: 6648174609997180606, guid: f242acb7dd971da48b428a3385abcde6, type: 3}
     description: Increase experience pickup range by 50%
     multiplier: 1.5
   shockwaveUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: 7850957687847233712, guid: 0258df1528d30f848b59eadab9b0f2a1, type: 3}
     description: Knock back enemies around you every few seconds
     shockwavePrefab: {fileID: 7966461660750304145, guid: 27d5674cdadd2514f8760ae6786633a2, type: 3}
   healthUpgrade:
-    icon: {fileID: 0}
+    cardSprite: {fileID: -2344910081636308886, guid: bc4935827238fb44094c429ff650c2f7, type: 3}
     description: Double your max health
     multiplier: 2

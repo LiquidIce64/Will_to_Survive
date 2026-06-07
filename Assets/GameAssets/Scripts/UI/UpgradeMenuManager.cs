@@ -9,19 +9,17 @@ public class UpgradeMenuManager : MonoBehaviour
     public UpgradeCardUI card2;
     public UpgradeCardUI card3;
 
-    private void CloseMenuInstant()
-    {
-        gameObject.SetActive(false);
-    }
+    public GameObject panel;
+    public GameObject button;
+
     private void Start()
     {
-        gameObject.SetActive(true);
-        CloseMenuInstant();
+        Player.Instance.playerXP.levelGained.AddListener(UpdateButton);
     }
 
     public void OpenMenu()
     {
-        gameObject.SetActive(true);
+        panel.SetActive(true);
         Time.timeScale = 0f;
 
         var upgrades = upgradeInfo.GetRandomUpgrades(3).ToList();
@@ -34,6 +32,13 @@ public class UpgradeMenuManager : MonoBehaviour
     public void CloseMenu()
     {
         Time.timeScale = 1f;
-        gameObject.SetActive(false);
+        panel.SetActive(false);
+        Player.Instance.playerXP.AvailableUpgrades--;
+        UpdateButton();
+    }
+
+    public void UpdateButton()
+    {
+        button.SetActive(Player.Instance.playerXP.AvailableUpgrades > 0);
     }
 }

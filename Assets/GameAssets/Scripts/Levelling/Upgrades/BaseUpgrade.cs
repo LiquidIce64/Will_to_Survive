@@ -1,8 +1,8 @@
-using UnityEngine.UI;
+using UnityEngine;
 
 abstract public class BaseUpgrade
 {
-    public Image icon;
+    public Sprite cardSprite;
     public string description;
 
     abstract public void Apply();
