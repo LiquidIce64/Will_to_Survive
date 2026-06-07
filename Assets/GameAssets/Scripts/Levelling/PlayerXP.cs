@@ -11,6 +11,7 @@ public class PlayerXP
     [SerializeField] private int level = 0;
     [SerializeField] private int availableUpgrades = 0;
     public UnityEvent levelGained = new();
+    [SerializeField] private RectTransform xpBar;
 
     public float RequiredXP => baseRequiredXp + xpPerLevel * level;
     public float XP => xp;
@@ -34,5 +35,6 @@ public class PlayerXP
             Player.Instance.ApplyDamage(-Player.Instance.maxHealth);
             levelGained.Invoke();
         }
+        xpBar.localScale = new Vector3(xp / RequiredXP, 1f, 1f);
     }
 }
