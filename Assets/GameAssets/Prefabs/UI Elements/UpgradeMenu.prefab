@@ -90,13 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeCardUI
   cardImage: {fileID: 7270800567029964362}
-  damageCard: {fileID: 4202025379388359055, guid: af39aabb06f877f4ba1db6028cedb716, type: 3}
-  attackSpeedCard: {fileID: 4164690741311793804, guid: a56e50a5a59fc7e4b8a038c6afd22a7e, type: 3}
-  xpMagnetCard: {fileID: 6648174609997180606, guid: f242acb7dd971da48b428a3385abcde6, type: 3}
-  explosionRadiusCard: {fileID: -3166573690098400175, guid: 8219aba84e12ec84db701a8edd230e48, type: 3}
-  healthCard: {fileID: -2344910081636308886, guid: bc4935827238fb44094c429ff650c2f7, type: 3}
-  walkSpeedCard: {fileID: -2081436207871814433, guid: 9b020739489516140bdcdcd3b33a0d47, type: 3}
-  shockwaveCard: {fileID: 7850957687847233712, guid: 0258df1528d30f848b59eadab9b0f2a1, type: 3}
 --- !u!1 &1764543036704214208
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,13 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeCardUI
   cardImage: {fileID: 1205610830497454274}
-  damageCard: {fileID: 4202025379388359055, guid: af39aabb06f877f4ba1db6028cedb716, type: 3}
-  attackSpeedCard: {fileID: 4164690741311793804, guid: a56e50a5a59fc7e4b8a038c6afd22a7e, type: 3}
-  xpMagnetCard: {fileID: 6648174609997180606, guid: f242acb7dd971da48b428a3385abcde6, type: 3}
-  explosionRadiusCard: {fileID: -3166573690098400175, guid: 8219aba84e12ec84db701a8edd230e48, type: 3}
-  healthCard: {fileID: -2344910081636308886, guid: bc4935827238fb44094c429ff650c2f7, type: 3}
-  walkSpeedCard: {fileID: -2081436207871814433, guid: 9b020739489516140bdcdcd3b33a0d47, type: 3}
-  shockwaveCard: {fileID: 7850957687847233712, guid: 0258df1528d30f848b59eadab9b0f2a1, type: 3}
 --- !u!1 &2313314741422500957
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +271,7 @@ GameObject:
   - component: {fileID: 8341560770286622730}
   - component: {fileID: 8096317939823143297}
   - component: {fileID: 5549826307381900541}
+  - component: {fileID: 4797661375904612875}
   m_Layer: 5
   m_Name: UpgradeMenu
   m_TagString: Untagged
@@ -377,6 +364,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4797661375904612875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4012035744292916823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041b52ed0457d9f49929e2dca6ecc81d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeMenuManager
+  upgradeInfo: {fileID: 11400000, guid: 1d4c211be11af024cb8cdfa26bedb8d8, type: 2}
+  card1: {fileID: 6014563687802160808}
+  card2: {fileID: 3472939981329250968}
+  card3: {fileID: 2968634651243828206}
+  panel: {fileID: 5437633514880290387}
+  button: {fileID: 9212985386031676670}
 --- !u!1 &4855471085590526674
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,13 +604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeCardUI
   cardImage: {fileID: 5248182086852469692}
-  damageCard: {fileID: 4202025379388359055, guid: af39aabb06f877f4ba1db6028cedb716, type: 3}
-  attackSpeedCard: {fileID: 4164690741311793804, guid: a56e50a5a59fc7e4b8a038c6afd22a7e, type: 3}
-  xpMagnetCard: {fileID: 6648174609997180606, guid: f242acb7dd971da48b428a3385abcde6, type: 3}
-  explosionRadiusCard: {fileID: -3166573690098400175, guid: 8219aba84e12ec84db701a8edd230e48, type: 3}
-  healthCard: {fileID: -2344910081636308886, guid: bc4935827238fb44094c429ff650c2f7, type: 3}
-  walkSpeedCard: {fileID: -2081436207871814433, guid: 9b020739489516140bdcdcd3b33a0d47, type: 3}
-  shockwaveCard: {fileID: 7850957687847233712, guid: 0258df1528d30f848b59eadab9b0f2a1, type: 3}
 --- !u!1 &5437633514880290387
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +615,6 @@ GameObject:
   - component: {fileID: 4128972328571535355}
   - component: {fileID: 1888523350319981752}
   - component: {fileID: 7220944593068907011}
-  - component: {fileID: 6173825778014520444}
   m_Layer: 5
   m_Name: UpgradeMenuPanel
   m_TagString: Untagged
@@ -684,22 +681,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6173825778014520444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5437633514880290387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041b52ed0457d9f49929e2dca6ecc81d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UpgradeMenuManager
-  upgradeInfo: {fileID: 11400000, guid: 1d4c211be11af024cb8cdfa26bedb8d8, type: 2}
-  card1: {fileID: 6014563687802160808}
-  card2: {fileID: 3472939981329250968}
-  card3: {fileID: 2968634651243828206}
 --- !u!1 &6600033329924373140
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +934,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6173825778014520444}
+      - m_Target: {fileID: 4797661375904612875}
         m_TargetAssemblyTypeName: UpgradeMenuManager, Assembly-CSharp
         m_MethodName: CloseMenu
         m_Mode: 1
@@ -1265,7 +1246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &984865007842727573
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1367,7 +1348,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6173825778014520444}
+      - m_Target: {fileID: 4797661375904612875}
         m_TargetAssemblyTypeName: UpgradeMenuManager, Assembly-CSharp
         m_MethodName: OpenMenu
         m_Mode: 1
