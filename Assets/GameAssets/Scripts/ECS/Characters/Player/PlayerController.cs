@@ -1,0 +1,106 @@
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    private static PlayerController instance;
+    private static InputSystem_Actions inputActions;
+
+    public float speed = 10000f;
+    public float maxHealth = 100f;
+    public float knockbackResistance = 1f;
+    [SerializeField] private float xpPickupRange = 4f;
+    public PlayerXP playerXP;
+
+    private Vector3 targetPos;
+
+    private EntityManager entityManager;
+    private Entity playerEntity;
+    private Entity magnetEntity;
+    private Entity spawnerEntity;
+
+    public static PlayerController Instance => instance;
+    public static InputSystem_Actions InputActions => inputActions;
+
+    public float XPPickupRange
+    {
+        get => xpPickupRange;
+        set
+        {
+            xpPickupRange = value;
+            if (magnetEntity == null) return;
+            var transform = entityManager.GetComponentData<LocalTransform>(magnetEntity);
+            transform.Scale = xpPickupRange;
+            entityManager.SetComponentData(magnetEntity, transform);
+        }
+    }
+
+    private void OnLevelUp()
+    {
+        if (spawnerEntity == null) return;
+        var config = entityManager.GetComponentData<EnemySpawnConfig>(spawnerEntity);
+        config.level = playerXP.Level;
+        entityManager.SetComponentData(spawnerEntity, config);
+    }
+
+    private void OnValidate()
+    {
+        instance = this;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+        inputActions = new InputSystem_Actions();
+        inputActions.Enable();
+    }
+
+    private void Start()
+    {
+        entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        playerEntity = entityManager.CreateEntityQuery(typeof(PlayerTag), typeof(CharacterData)).GetSingletonEntity();
+        magnetEntity = entityManager.CreateEntityQuery(typeof(XPMagnetTag), typeof(LocalTransform)).GetSingletonEntity();
+        spawnerEntity = entityManager.CreateEntityQuery(typeof(EnemySpawnConfig)).GetSingletonEntity();
+
+        playerXP.levelGained.AddListener(OnLevelUp);
+        inputActions.UI.Pause.started += _ => PauseMenu.Instance.TogglePause();
+    }
+
+    private void Update()
+    {
+        bool isFiring = inputActions.Player.Attack.IsPressed();
+        Vector2 moveVector = inputActions.Player.Move.ReadValue<Vector2>().normalized;
+        Vector2 mousePos = inputActions.Player.Look.ReadValue<Vector2>();
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(mousePos), out RaycastHit hit))
+        {
+            targetPos = hit.point;
+            targetPos.y = transform.position.y;
+        }
+
+        if (playerEntity == null) return;
+        if (!entityManager.HasComponent<CharacterData>(playerEntity)) return;
+        var characterData = entityManager.GetComponentData<CharacterData>(playerEntity);
+        characterData.speed = speed;
+        characterData.maxHealth = maxHealth;
+        characterData.knockbackResistance = knockbackResistance;
+        characterData.moveVector = new float3(moveVector.x, 0f, moveVector.y);
+        characterData.targetPos = new float3(targetPos.x, targetPos.y, targetPos.z);
+        characterData.isFiring = isFiring;
+        entityManager.SetComponentData(playerEntity, characterData);
+
+        var healthBar = HealthBar.Instance;
+        healthBar.Health = Mathf.CeilToInt(characterData.health / maxHealth * healthBar.MaxHealth);
+        if (characterData.health == 0f)
+        {
+            DeadMenuManager.Instance.ShowDeadMenu();
+            enabled = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        inputActions.Disable();
+    }
+}

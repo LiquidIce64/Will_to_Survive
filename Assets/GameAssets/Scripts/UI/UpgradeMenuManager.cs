@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UpgradeMenuManager : MonoBehaviour
 {
+    private static UpgradeMenuManager instance;
+
     public UpgradeInfo upgradeInfo;
 
     public UpgradeCardUI card1;
@@ -12,9 +14,11 @@ public class UpgradeMenuManager : MonoBehaviour
     public GameObject panel;
     public GameObject button;
 
-    private void Start()
+    public static UpgradeMenuManager Instance => instance;
+
+    private void Awake()
     {
-        Player.Instance.playerXP.levelGained.AddListener(UpdateButton);
+        instance = this;
     }
 
     public void OpenMenu()

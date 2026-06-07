@@ -1,18 +1,21 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    private static PauseMenu instance;
+
     public bool PauseGame;
     public GameObject pauseGameMenu;
 
-    private void Start()
+    public static PauseMenu Instance => instance;
+
+    private void Awake()
     {
-        Player.InputActions.UI.Pause.started += TogglePause;
+        instance = this;
     }
 
-    private void TogglePause(InputAction.CallbackContext context)
+    public void TogglePause()
     {
         if (PauseGame)
         {
