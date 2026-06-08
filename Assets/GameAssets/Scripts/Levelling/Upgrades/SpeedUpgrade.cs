@@ -8,6 +8,6 @@ public class SpeedUpgrade : BaseUpgrade
 
     override public void Apply()
     {
-        Player.Instance.speed *= multiplier;
+        PlayerController.Instance.speed *= multiplier;
     }
 }

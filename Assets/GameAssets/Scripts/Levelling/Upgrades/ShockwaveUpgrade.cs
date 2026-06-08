@@ -8,9 +8,6 @@ public class ShockwaveUpgrade : BaseUpgrade
 
     override public void Apply()
     {
-        if (Shockwave.Instance != null)
-            Shockwave.Instance.fireRate *= 2;
-        else
-            GameObject.Instantiate(shockwavePrefab, Player.Instance.transform);
+        GameObject.Instantiate(shockwavePrefab);
     }
 }

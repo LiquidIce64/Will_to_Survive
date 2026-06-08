@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shockwave
   damage: 10
-  knockback: 100
+  knockback: 50
   range: 7
   fireRate: 0.2

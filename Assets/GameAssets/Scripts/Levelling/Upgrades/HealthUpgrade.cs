@@ -8,7 +8,7 @@ public class HealthUpgrade : BaseUpgrade
 
     override public void Apply()
     {
-        Player.Instance.maxHealth *= multiplier;
-        Player.Instance.ApplyDamage(-Player.Instance.maxHealth);
+        PlayerController.Instance.maxHealth *= multiplier;
+        PlayerController.Instance.heal = true;
     }
 }

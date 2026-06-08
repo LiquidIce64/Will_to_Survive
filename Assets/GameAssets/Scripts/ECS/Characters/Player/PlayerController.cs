@@ -18,10 +18,10 @@ public class PlayerController : MonoBehaviour
     private float xpReceived = 0f;
     [HideInInspector] public bool heal = false;
 
-    private EntityManager entityManager;
-    private EntityQuery playerQuery;
-    private EntityQuery magnetQuery;
-    private EntityQuery spawnerQuery;
+    public EntityManager entityManager;
+    public EntityQuery playerQuery;
+    public EntityQuery magnetQuery;
+    public EntityQuery spawnerQuery;
 
     public static PlayerController Instance => instance;
     public static InputSystem_Actions InputActions => inputActions;

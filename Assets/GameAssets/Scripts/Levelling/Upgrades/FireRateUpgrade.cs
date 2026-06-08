@@ -1,4 +1,5 @@
 using System;
+using Unity.Entities;
 using UnityEngine;
 
 [Serializable]
@@ -8,6 +9,9 @@ public class FireRateUpgrade : BaseUpgrade
 
     override public void Apply()
     {
-        Player.Instance.Weapon.fireRate *= multiplier;
+        if (!PlayerController.Instance.playerQuery.TryGetSingletonEntity<PlayerTag>(out Entity player)) return;
+        var weaponData = PlayerController.Instance.entityManager.GetComponentData<WeaponData>(player);
+        weaponData.fireRate *= multiplier;
+        PlayerController.Instance.entityManager.SetComponentData(player, weaponData);
     }
 }

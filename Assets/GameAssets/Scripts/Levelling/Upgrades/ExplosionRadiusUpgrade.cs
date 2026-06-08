@@ -1,4 +1,5 @@
 using System;
+using Unity.Entities;
 using UnityEngine;
 
 [Serializable]
@@ -8,6 +9,9 @@ public class ExplosionRadiusUpgrade : BaseUpgrade
 
     override public void Apply()
     {
-        Player.Instance.Weapon.range *= multiplier;
+        if (!PlayerController.Instance.playerQuery.TryGetSingletonEntity<PlayerTag>(out Entity player)) return;
+        var weaponData = PlayerController.Instance.entityManager.GetComponentData<WeaponData>(player);
+        weaponData.projectileData.radius *= multiplier;
+        PlayerController.Instance.entityManager.SetComponentData(player, weaponData);
     }
 }

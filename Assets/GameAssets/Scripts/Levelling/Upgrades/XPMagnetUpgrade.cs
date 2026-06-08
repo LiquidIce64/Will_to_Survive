@@ -8,6 +8,6 @@ public class XPMagnetUpgrade : BaseUpgrade
 
     override public void Apply()
     {
-        Player.Instance.xpMagnet.radius *= multiplier;
+        PlayerController.Instance.XPPickupRange *= multiplier;
     }
 }
