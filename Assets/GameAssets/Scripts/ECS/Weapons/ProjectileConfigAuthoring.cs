@@ -13,7 +13,7 @@ public class ProjectileConfigAuthoring : MonoBehaviour
             AddComponent(entity, new ProjectileConfig
             {
                 filter = new CollisionFilter {
-                    BelongsTo = 1u << LayerMask.NameToLayer("Projectiles"),
+                    BelongsTo = ~0u,
                     CollidesWith = 1u << LayerMask.NameToLayer("Character"),
                     GroupIndex = 0
                 },

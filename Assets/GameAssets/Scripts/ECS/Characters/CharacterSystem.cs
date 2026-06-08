@@ -18,7 +18,7 @@ public partial struct CharacterSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         float deltaTime = SystemAPI.Time.DeltaTime;
-        var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
         var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
         foreach (var (transform, velocity, character, damage, entity) in SystemAPI.Query<
@@ -36,30 +36,31 @@ public partial struct CharacterSystem : ISystem
             character.ValueRW.health = math.clamp(character.ValueRO.health - damage.ValueRO.damageTaken, 0f, character.ValueRO.maxHealth);
             damage.ValueRW.damageTaken = 0f;
             if (character.ValueRW.health == 0f)
-                ecb.AddComponent<DeadEntityTag>(entity);
+                ecb.AddComponent(entity, new DeadEntityTag());
 
             if (SystemAPI.HasComponent<WeaponData>(entity))
             {
-                var weaponData = SystemAPI.GetComponent<WeaponData>(entity);
-                if (weaponData.cooldown > 0f)
+                var weaponData = SystemAPI.GetComponentRW<WeaponData>(entity);
+                if (weaponData.ValueRO.cooldown > 0f)
                 {
-                    weaponData.cooldown -= deltaTime;
+                    weaponData.ValueRW.cooldown -= deltaTime;
                     continue;
                 }
                 if (!character.ValueRO.isFiring) continue;
+                weaponData.ValueRW.cooldown = 1f / weaponData.ValueRO.fireRate;
 
                 var random = Random.CreateFromIndex((uint)(SystemAPI.Time.ElapsedTime * 1000f) + 1u);
-                var spread = weaponData.horizontalSpread / 2;
+                var spread = weaponData.ValueRO.horizontalSpread / 360f * math.PI;
                 var newTransform = transform.ValueRO.RotateY(random.NextFloat(-spread, spread));
 
                 Entity projectile;
-                if (weaponData.projectilePrefab != Entity.Null)
+                if (weaponData.ValueRO.projectilePrefab != Entity.Null)
                 {
-                    projectile = ecb.Instantiate(weaponData.projectilePrefab);
+                    projectile = ecb.Instantiate(weaponData.ValueRO.projectilePrefab);
                     ecb.SetComponent(projectile, newTransform);
                     ecb.SetComponent(projectile, new PhysicsVelocity {
                         Angular = float3.zero,
-                        Linear = newTransform.TransformDirection(weaponData.projectileVelocity)
+                        Linear = newTransform.TransformDirection(weaponData.ValueRO.projectileVelocity)
                     });
                 }
                 else
@@ -67,11 +68,11 @@ public partial struct CharacterSystem : ISystem
                     projectile = ecb.CreateEntity();
                     ecb.AddComponent(projectile, newTransform);
                 }
-                ecb.AddComponent(projectile, weaponData.projectileData);
-                ecb.AddComponent(projectile, new LifeTimeData { lifeTime = 0f, maxLifeTime = weaponData.projectileLifeTime });
-                if (weaponData.projectileLifeTime == 0f) ecb.AddComponent<DeadEntityTag>(projectile);
+                ecb.AddComponent(projectile, weaponData.ValueRO.projectileData);
+                ecb.AddComponent(projectile, new LifeTimeData { lifeTime = 0f, maxLifeTime = weaponData.ValueRO.projectileLifeTime });
+                if (weaponData.ValueRO.projectileLifeTime == 0f) ecb.AddComponent(projectile, new DeadEntityTag());
 
-                velocity.ValueRW.Linear -= weaponData.selfKnockback;
+                velocity.ValueRW.Linear -= weaponData.ValueRO.selfKnockback;
             }
         }
     }

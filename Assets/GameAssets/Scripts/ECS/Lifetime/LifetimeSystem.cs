@@ -1,5 +1,7 @@
 using Unity.Entities;
+using Unity.Physics.Systems;
 
+[UpdateInGroup(typeof(BeforePhysicsSystemGroup))]
 public partial struct LifetimeSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
@@ -19,7 +21,7 @@ public partial struct LifetimeSystem : ISystem
             if (newLifeTime >= lifeTimeData.ValueRW.maxLifeTime)
             {
                 newLifeTime = lifeTimeData.ValueRW.maxLifeTime;
-                ecb.AddComponent<DeadEntityTag>(entity);
+                ecb.AddComponent(entity, new DeadEntityTag());
             }
             lifeTimeData.ValueRW.lifeTime = newLifeTime;
         }

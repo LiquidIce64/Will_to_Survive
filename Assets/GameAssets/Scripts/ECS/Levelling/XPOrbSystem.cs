@@ -33,7 +33,7 @@ partial struct XPOrbSystem : ISystem
             }
 
         float deltaLerp = SystemAPI.Time.DeltaTime * config.pickupSpeed;
-        var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
         var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
         foreach (var (transform, orbData, animData, entity) in SystemAPI.Query<
