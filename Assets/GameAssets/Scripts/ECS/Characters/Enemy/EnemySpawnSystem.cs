@@ -53,6 +53,7 @@ public partial struct EnemySpawnSystem : ISystem
 
             entityManager.AddComponentData(enemy, preset.characterData);
             entityManager.AddComponentData(enemy, preset.enemyData);
+            entityManager.AddComponentData(enemy, preset.weaponData);
             entityManager.AddComponentData(enemy, new DamageData { damageTaken = 0f });
 
             if (entityManager.HasComponent<LocalTransform>(enemy))

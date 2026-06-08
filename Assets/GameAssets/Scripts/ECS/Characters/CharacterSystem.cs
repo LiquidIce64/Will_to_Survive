@@ -1,8 +1,11 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Physics.Systems;
 using Unity.Transforms;
 
+[UpdateInGroup(typeof(PhysicsSystemGroup))]
+[UpdateBefore(typeof(PhysicsSimulationGroup))]
 public partial struct CharacterSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
@@ -32,9 +35,44 @@ public partial struct CharacterSystem : ISystem
 
             character.ValueRW.health = math.clamp(character.ValueRO.health - damage.ValueRO.damageTaken, 0f, character.ValueRO.maxHealth);
             damage.ValueRW.damageTaken = 0f;
-
             if (character.ValueRW.health == 0f)
                 ecb.AddComponent<DeadEntityTag>(entity);
+
+            if (SystemAPI.HasComponent<WeaponData>(entity))
+            {
+                var weaponData = SystemAPI.GetComponent<WeaponData>(entity);
+                if (weaponData.cooldown > 0f)
+                {
+                    weaponData.cooldown -= deltaTime;
+                    continue;
+                }
+                if (!character.ValueRO.isFiring) continue;
+
+                var random = Random.CreateFromIndex((uint)(SystemAPI.Time.ElapsedTime * 1000f) + 1u);
+                var spread = weaponData.horizontalSpread / 2;
+                var newTransform = transform.ValueRO.RotateY(random.NextFloat(-spread, spread));
+
+                Entity projectile;
+                if (weaponData.projectilePrefab != Entity.Null)
+                {
+                    projectile = ecb.Instantiate(weaponData.projectilePrefab);
+                    ecb.SetComponent(projectile, newTransform);
+                    ecb.SetComponent(projectile, new PhysicsVelocity {
+                        Angular = float3.zero,
+                        Linear = newTransform.TransformDirection(weaponData.projectileVelocity)
+                    });
+                }
+                else
+                {
+                    projectile = ecb.CreateEntity();
+                    ecb.AddComponent(projectile, newTransform);
+                }
+                ecb.AddComponent(projectile, weaponData.projectileData);
+                ecb.AddComponent(projectile, new LifeTimeData { lifeTime = 0f, maxLifeTime = weaponData.projectileLifeTime });
+                if (weaponData.projectileLifeTime == 0f) ecb.AddComponent<DeadEntityTag>(projectile);
+
+                velocity.ValueRW.Linear -= weaponData.selfKnockback;
+            }
         }
     }
 }

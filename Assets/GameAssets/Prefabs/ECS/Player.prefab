@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8739261856716776746}
   - component: {fileID: 7258416285522257600}
+  - component: {fileID: -2600084185253817512}
   - component: {fileID: 1388719563989196386}
   - component: {fileID: 5523675286626215643}
   - component: {fileID: 8018149930306893413}
@@ -148,6 +149,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da12043a11051a47a681fae5c5053db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAuthoring
+--- !u!114 &-2600084185253817512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8387678497997826698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2ee02f9919da44fb5fa4e08fd33557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDataValues
+  projectilePrefab: {fileID: 1356768817023988055, guid: 9ef41b1f2292e384a8bb777c38967876, type: 3}
+  projectileData:
+    explodeOnImpact: 1
+    damageOnImpact: 0
+    damage: 40
+    radius: 2
+    knockback: 20
+    playerOwned: 1
+  projectileVelocity: {x: 0, y: 0, z: 15}
+  projectileLifeTime: 4
+  selfKnockback: 0
+  fireRate: 1
+  horizontalSpread: 0
 --- !u!54 &1388719563989196386
 Rigidbody:
   m_ObjectHideFlags: 0

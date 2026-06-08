@@ -5,6 +5,7 @@ public struct EnemySpawnPreset : IBufferElementData
     public Entity entity;
     public CharacterData characterData;
     public EnemyData enemyData;
+    public WeaponData weaponData;
 }
 
 public struct EnemySpawnConfig : IComponentData

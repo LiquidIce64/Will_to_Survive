@@ -34,7 +34,9 @@ public class EnemySpawnAuthoring : MonoBehaviour
             foreach (var preset in authoring.enemyPresets)
             {
                 if (!preset.TryGetComponent(out EnemyDataValues enemyData)) continue;
+                if (!preset.TryGetComponent(out WeaponDataValues weaponData)) continue;
                 DependsOn(preset);
+                Entity projectile = (weaponData.projectilePrefab != null) ? GetEntity(weaponData.projectilePrefab, TransformUsageFlags.Dynamic) : Entity.Null;
                 buffer.Add(new EnemySpawnPreset {
                     entity = GetEntity(preset, TransformUsageFlags.Dynamic),
                     characterData = new CharacterData
@@ -45,7 +47,7 @@ public class EnemySpawnAuthoring : MonoBehaviour
                         knockbackResistance = enemyData.knockbackResistance,
                         moveVector = float3.zero,
                         targetPos = float3.zero,
-                        isFiring = false
+                        isFiring = false,
                     },
                     enemyData = new EnemyData
                     {
@@ -57,7 +59,26 @@ public class EnemySpawnAuthoring : MonoBehaviour
                         aimingTime = enemyData.aimingTime,
                         remainingAimTime = enemyData.aimingTime,
                         xpDrop = enemyData.xpDrop,
-                    }
+                    },
+                    weaponData = new WeaponData
+                    {
+                        projectilePrefab = projectile,
+                        projectileData = new ProjectileData
+                        {
+                            explodeOnImpact = weaponData.projectileData.explodeOnImpact,
+                            damageOnImpact = weaponData.projectileData.damageOnImpact,
+                            damage = weaponData.projectileData.damage,
+                            radius = weaponData.projectileData.radius,
+                            knockback = weaponData.projectileData.knockback,
+                            playerOwned = weaponData.projectileData.playerOwned,
+                        },
+                        projectileVelocity = weaponData.projectileVelocity,
+                        projectileLifeTime = weaponData.projectileLifeTime,
+                        selfKnockback = weaponData.selfKnockback,
+                        fireRate = weaponData.fireRate,
+                        horizontalSpread = weaponData.horizontalSpread,
+                        cooldown = 1f / weaponData.fireRate,
+                    },
                 });
             }
 

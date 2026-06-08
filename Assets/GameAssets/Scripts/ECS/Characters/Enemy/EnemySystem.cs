@@ -58,25 +58,30 @@ public partial struct EnemySystem : ISystem
                 case NPCState.Follow:
                     ResetAimTime(ref enemyData.ValueRW, ref random);
                     characterData.ValueRW.moveVector = playerDir;
+                    characterData.ValueRW.isFiring = false;
+
                     if (distance <= enemyData.ValueRO.attackDistance)
                         enemyData.ValueRW.state = NPCState.Attack;
                     break;
+
                 case NPCState.Attack:
                     characterData.ValueRW.moveVector = float3.zero;
                     if (enemyData.ValueRO.remainingAimTime > 0f)
                         enemyData.ValueRW.remainingAimTime -= deltaTime;
                     else
-                    {
-                        //weapon.Use();
-                    }
+                        characterData.ValueRW.isFiring = true;
+
                     if (distance > enemyData.ValueRO.maxAttackDistance)
                         enemyData.ValueRW.state = NPCState.Follow;
                     else if (distance < enemyData.ValueRO.minAttackDistance)
                         enemyData.ValueRW.state = NPCState.Retreat;
                     break;
+
                 case NPCState.Retreat:
                     ResetAimTime(ref enemyData.ValueRW, ref random);
                     characterData.ValueRW.moveVector = -playerDir;
+                    characterData.ValueRW.isFiring = false;
+
                     if (distance >= enemyData.ValueRO.attackDistance)
                         enemyData.ValueRW.state = NPCState.Attack;
                     break;

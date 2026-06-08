@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 768447398676141648}
   - component: {fileID: 3167866814963770517}
+  - component: {fileID: -4386098340840436711}
   - component: {fileID: 7462974089267447341}
   - component: {fileID: 3385782664159784654}
   - component: {fileID: 660910307058461287}
@@ -57,6 +58,31 @@ MonoBehaviour:
   minAttackDistance: 0
   aimingTime: 0.25
   xpDrop: 1
+--- !u!114 &-4386098340840436711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123367936167739595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2ee02f9919da44fb5fa4e08fd33557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDataValues
+  projectilePrefab: {fileID: 0}
+  projectileData:
+    explodeOnImpact: 0
+    damageOnImpact: 0
+    damage: 5
+    radius: 1.5
+    knockback: 10
+    playerOwned: 0
+  projectileVelocity: {x: 0, y: 0, z: 0}
+  projectileLifeTime: 0
+  selfKnockback: 0
+  fireRate: 1
+  horizontalSpread: 0
 --- !u!54 &7462974089267447341
 Rigidbody:
   m_ObjectHideFlags: 0
