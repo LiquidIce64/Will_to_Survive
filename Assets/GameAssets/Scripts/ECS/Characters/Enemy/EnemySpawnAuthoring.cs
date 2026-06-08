@@ -11,6 +11,7 @@ public class EnemySpawnAuthoring : MonoBehaviour
     [SerializeField] private float baseSpawnInterval = 2f;
     [SerializeField] private float spawnIntervalRandomness = 1f;
     [SerializeField] private float intervalLevelMultiplier = 0.9f;
+    [SerializeField] private float spawnCheckRadius = 0.7f;
     [SerializeField] private GameObject[] enemyPresets;
 
 #if UNITY_EDITOR
@@ -48,6 +49,7 @@ public class EnemySpawnAuthoring : MonoBehaviour
                     },
                     enemyData = new EnemyData
                     {
+                        seed = 1u,
                         state = NPCState.Follow,
                         maxAttackDistance = enemyData.maxAttackDistance,
                         attackDistance = enemyData.attackDistance,
@@ -61,6 +63,8 @@ public class EnemySpawnAuthoring : MonoBehaviour
 
             AddComponent(entity, new EnemySpawnConfig
             {
+                seed = (uint)UnityEngine.Random.Range(1, int.MaxValue),
+                spawnCheckRadius = authoring.spawnCheckRadius,
                 timeUntilSpawn = 0f,
                 baseSpawnInterval = authoring.baseSpawnInterval,
                 spawnIntervalRandomness = authoring.spawnIntervalRandomness,

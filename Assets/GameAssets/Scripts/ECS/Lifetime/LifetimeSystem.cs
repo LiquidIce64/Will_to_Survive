@@ -10,7 +10,8 @@ public partial struct LifetimeSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         float deltaTime = SystemAPI.Time.DeltaTime;
-        var entityManager = state.EntityManager;
+        var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
         foreach (var (lifeTimeData, entity) in SystemAPI.Query<RefRW<LifeTimeData>>().WithNone<DeadEntityTag>().WithEntityAccess())
         {
@@ -18,7 +19,7 @@ public partial struct LifetimeSystem : ISystem
             if (newLifeTime >= lifeTimeData.ValueRW.maxLifeTime)
             {
                 newLifeTime = lifeTimeData.ValueRW.maxLifeTime;
-                entityManager.AddComponent<DeadEntityTag>(entity);
+                ecb.AddComponent<DeadEntityTag>(entity);
             }
             lifeTimeData.ValueRW.lifeTime = newLifeTime;
         }

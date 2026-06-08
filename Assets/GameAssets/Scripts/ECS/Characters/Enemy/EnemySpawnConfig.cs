@@ -9,6 +9,8 @@ public struct EnemySpawnPreset : IBufferElementData
 
 public struct EnemySpawnConfig : IComponentData
 {
+    public uint seed;
+    public float spawnCheckRadius;
     public float timeUntilSpawn;
     public float baseSpawnInterval;
     public float spawnIntervalRandomness;

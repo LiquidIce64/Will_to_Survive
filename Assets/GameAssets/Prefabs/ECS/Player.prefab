@@ -47,6 +47,7 @@ MonoBehaviour:
   baseSpawnInterval: 2
   spawnIntervalRandomness: 1
   intervalLevelMultiplier: 0.9
+  spawnCheckRadius: 0.4
   enemyPresets:
   - {fileID: 6123367936167739595, guid: 249485ff70affe64aaec8af305a18c5f, type: 3}
   - {fileID: 3784672564704464152, guid: ce1e678c869e68f479f417507abc1b50, type: 3}
@@ -61,7 +62,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8101116949590506624}
   - component: {fileID: 5855610778404371147}
-  - component: {fileID: 1355913303835938257}
   m_Layer: 6
   m_Name: XP Magnet
   m_TagString: Untagged
@@ -96,27 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad602e1dbcf319459e3af3293d623f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPMagnetAuthoring
---- !u!135 &1355913303835938257
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111466597726338253}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  xpOrbPrefab: {fileID: 387483781099525996, guid: 7219c8bf7a570b941b20376b6885e28e, type: 3}
+  pickupSpeed: 10
 --- !u!1 &8387678497997826698
 GameObject:
   m_ObjectHideFlags: 0

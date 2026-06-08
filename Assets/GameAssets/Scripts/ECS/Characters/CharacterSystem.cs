@@ -15,7 +15,8 @@ public partial struct CharacterSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         float deltaTime = SystemAPI.Time.DeltaTime;
-        var entityManager = state.EntityManager;
+        var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
         foreach (var (transform, velocity, character, damage, entity) in SystemAPI.Query<
             RefRW<LocalTransform>, RefRW<PhysicsVelocity>,
@@ -33,7 +34,7 @@ public partial struct CharacterSystem : ISystem
             damage.ValueRW.damageTaken = 0f;
 
             if (character.ValueRW.health == 0f)
-                entityManager.AddComponent<DeadEntityTag>(entity);
+                ecb.AddComponent<DeadEntityTag>(entity);
         }
     }
 }

@@ -9,15 +9,17 @@ public class PlayerAuthoring : MonoBehaviour
         public override void Bake(PlayerAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-            DependsOn(PlayerController.Instance);
-            AddComponentObject(entity, PlayerController.Instance);
+
+            var controller = FindAnyObjectByType<PlayerController>();
+            DependsOn(controller);
+            AddComponentObject(entity, controller);
 
             AddComponent(entity, new CharacterData
             {
-                speed = PlayerController.Instance.speed,
-                health = PlayerController.Instance.maxHealth,
-                maxHealth = PlayerController.Instance.maxHealth,
-                knockbackResistance = PlayerController.Instance.knockbackResistance,
+                speed = controller.speed,
+                health = controller.maxHealth,
+                maxHealth = controller.maxHealth,
+                knockbackResistance = controller.knockbackResistance,
                 moveVector = float3.zero,
                 targetPos = float3.zero,
                 isFiring = false,

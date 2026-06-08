@@ -37,12 +37,12 @@ public class UpgradeMenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         panel.SetActive(false);
-        Player.Instance.playerXP.AvailableUpgrades--;
+        PlayerController.Instance.playerXP.AvailableUpgrades--;
         UpdateButton();
     }
 
     public void UpdateButton()
     {
-        button.SetActive(Player.Instance.playerXP.AvailableUpgrades > 0);
+        button.SetActive(PlayerController.Instance.playerXP.AvailableUpgrades > 0);
     }
 }

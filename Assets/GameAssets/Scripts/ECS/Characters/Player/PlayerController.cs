@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public PlayerXP playerXP;
 
     private Vector3 targetPos;
+    private float xpReceived = 0f;
+    [HideInInspector] public bool heal = false;
 
     private EntityManager entityManager;
     private Entity playerEntity;
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnLevelUp()
+    public void OnLevelUp()
     {
         if (spawnerEntity == null) return;
         var config = entityManager.GetComponentData<EnemySpawnConfig>(spawnerEntity);
@@ -64,7 +66,6 @@ public class PlayerController : MonoBehaviour
         magnetEntity = entityManager.CreateEntityQuery(typeof(XPMagnetTag), typeof(LocalTransform)).GetSingletonEntity();
         spawnerEntity = entityManager.CreateEntityQuery(typeof(EnemySpawnConfig)).GetSingletonEntity();
 
-        playerXP.levelGained.AddListener(OnLevelUp);
         inputActions.UI.Pause.started += _ => PauseMenu.Instance.TogglePause();
     }
 
@@ -88,6 +89,11 @@ public class PlayerController : MonoBehaviour
         characterData.moveVector = new float3(moveVector.x, 0f, moveVector.y);
         characterData.targetPos = new float3(targetPos.x, targetPos.y, targetPos.z);
         characterData.isFiring = isFiring;
+        if (heal)
+        {
+            characterData.health = maxHealth;
+            heal = false;
+        }
         entityManager.SetComponentData(playerEntity, characterData);
 
         var healthBar = HealthBar.Instance;
@@ -97,6 +103,11 @@ public class PlayerController : MonoBehaviour
             DeadMenuManager.Instance.ShowDeadMenu();
             enabled = false;
         }
+
+        if (magnetEntity == null) return;
+        var config = entityManager.GetComponentData<XPOrbConfig>(magnetEntity);
+        playerXP.AddXP(config.xpGained - xpReceived);
+        xpReceived = config.xpGained;
     }
 
     private void OnDestroy()

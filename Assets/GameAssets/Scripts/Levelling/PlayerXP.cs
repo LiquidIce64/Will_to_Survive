@@ -24,6 +24,7 @@ public class PlayerXP
 
     public void AddXP(float amount)
     {
+        if (amount <= 0f) return;
         xp += amount;
         float required = RequiredXP;
         if (xp >= required)
@@ -31,8 +32,9 @@ public class PlayerXP
             xp -= required;
             level++;
             availableUpgrades++;
-            Player.Instance.ApplyDamage(-Player.Instance.maxHealth);
+            PlayerController.Instance.heal = true;
             UpgradeMenuManager.Instance.UpdateButton();
+            PlayerController.Instance.OnLevelUp();
             levelGained.Invoke();
         }
         XPBar.Instance.SetValue(xp / RequiredXP);
