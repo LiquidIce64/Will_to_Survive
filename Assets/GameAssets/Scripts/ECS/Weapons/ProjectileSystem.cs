@@ -29,7 +29,7 @@ public partial struct ProjectileSystem : ISystem
                 foreach (var hit in hits)
                 {
                     var character = hit.Entity;
-                    if (!SystemAPI.HasComponent<CharacterData>(character)) continue;
+                    if (!SystemAPI.TryGetComponent(character, out CharacterData characterData)) continue;
 
                     var isPlayer = SystemAPI.HasComponent<PlayerTag>(character);
                     if (projectile.ValueRO.playerOwned == isPlayer) continue;
@@ -41,7 +41,7 @@ public partial struct ProjectileSystem : ISystem
                     knockbackDir = math.normalizesafe(knockbackDir, float3.zero);
                     var knockback = knockbackMult * projectile.ValueRO.knockback * knockbackDir;
                     if (math.all(math.isfinite(knockback)))
-                        SystemAPI.GetComponentRW<PhysicsVelocity>(character).ValueRW.Linear += knockback;
+                        SystemAPI.GetComponentRW<PhysicsVelocity>(character).ValueRW.Linear += knockback / characterData.knockbackResistance;
                 }
             ecb.DestroyEntity(entity);
         }

@@ -12,6 +12,7 @@ partial struct ProjectileCollisionSystem : ISystem
 {
     private ComponentLookup<DeadEntityTag> _deadEntityLookup;
     private ComponentLookup<ProjectileData> _projectileLookup;
+    private ComponentLookup<CharacterData> _characterLookup;
     private ComponentLookup<DamageData> _damageLookup;
     private ComponentLookup<PhysicsVelocity> _velocityLookup;
 
@@ -20,6 +21,7 @@ partial struct ProjectileCollisionSystem : ISystem
     {
         _deadEntityLookup = state.GetComponentLookup<DeadEntityTag>(true);
         _projectileLookup = state.GetComponentLookup<ProjectileData>(true);
+        _characterLookup = state.GetComponentLookup<CharacterData>(true);
         _damageLookup = state.GetComponentLookup<DamageData>(false);
         _velocityLookup = state.GetComponentLookup<PhysicsVelocity>(false);
 
@@ -37,6 +39,7 @@ partial struct ProjectileCollisionSystem : ISystem
 
         _deadEntityLookup.Update(ref state);
         _projectileLookup.Update(ref state);
+        _characterLookup.Update(ref state);
         _velocityLookup.Update(ref state);
         _damageLookup.Update(ref state);
 
@@ -46,6 +49,7 @@ partial struct ProjectileCollisionSystem : ISystem
             player = SystemAPI.GetSingletonEntity<PlayerTag>(),
             deadEntityLookup = _deadEntityLookup,
             projectileLookup = _projectileLookup,
+            characterLookup = _characterLookup,
             damageLookup = _damageLookup,
             velocityLookup = _velocityLookup,
             ecb = ecb.AsParallelWriter(),
@@ -62,6 +66,7 @@ public partial struct ProcessTriggerEventsJob : ITriggerEventsJob
     [ReadOnly] public Entity player;
     [ReadOnly] public ComponentLookup<DeadEntityTag> deadEntityLookup;
     [ReadOnly] public ComponentLookup<ProjectileData> projectileLookup;
+    [ReadOnly] public ComponentLookup<CharacterData> characterLookup;
     public ComponentLookup<DamageData> damageLookup;
     public ComponentLookup<PhysicsVelocity> velocityLookup;
 
@@ -86,7 +91,7 @@ public partial struct ProcessTriggerEventsJob : ITriggerEventsJob
         }
         var projectileData = projectileLookup[projectile];
 
-        if (damageLookup.HasComponent(other))
+        if (characterLookup.HasComponent(other))
         {
             if (other.Equals(player) == projectileData.playerOwned) return;
             if (projectileData.damageOnImpact)
@@ -98,7 +103,7 @@ public partial struct ProcessTriggerEventsJob : ITriggerEventsJob
                 projectileDir.y = 0f;
                 projectileDir = math.normalizesafe(projectileDir, float3.zero);
                 var characterVel = velocityLookup[other];
-                characterVel.Linear += projectileDir * projectileData.knockback;
+                characterVel.Linear += projectileData.knockback / characterLookup[other].knockbackResistance * projectileDir;
                 if (math.all(math.isfinite(characterVel.Linear))) velocityLookup[other] = characterVel;
             }
         }

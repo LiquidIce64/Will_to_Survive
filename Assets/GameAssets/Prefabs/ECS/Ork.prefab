@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7c39e03d83f884d84abaaa9f2367cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataValues
-  speed: 75
+  speed: 30
   maxHealth: 200
-  knockbackResistance: 1.5
+  knockbackResistance: 2
   maxAttackDistance: 10
   attackDistance: 9
   minAttackDistance: 8
@@ -92,7 +92,7 @@ Rigidbody:
   m_GameObject: {fileID: 3784672564704464152}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 50
+  m_LinearDamping: 15
   m_AngularDamping: 1000
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
