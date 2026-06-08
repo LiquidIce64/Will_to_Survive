@@ -28,19 +28,20 @@ public partial struct ProjectileSystem : ISystem
             if (physicsWorld.OverlapSphere(transform.ValueRO.Position, projectile.ValueRO.radius, ref hits, config.filter))
                 foreach (var hit in hits)
                 {
-                    UnityEngine.Debug.Log(123);
                     var character = hit.Entity;
+                    if (!SystemAPI.HasComponent<CharacterData>(character)) continue;
+
                     var isPlayer = SystemAPI.HasComponent<PlayerTag>(character);
                     if (projectile.ValueRO.playerOwned == isPlayer) continue;
 
-                    if (!SystemAPI.TryGetComponent(character, out DamageData damageData)) continue;
-                    damageData.damageTaken += projectile.ValueRO.damage;
+                    SystemAPI.GetComponentRW<DamageData>(character).ValueRW.damageTaken += projectile.ValueRO.damage;
 
-                    var characterVel = SystemAPI.GetComponentRW<PhysicsVelocity>(character).ValueRW;
                     var knockbackDir = SystemAPI.GetComponent<LocalTransform>(character).Position - transform.ValueRO.Position;
                     float knockbackMult = 2f - math.length(knockbackDir) / projectile.ValueRO.radius;
                     knockbackDir = math.normalizesafe(knockbackDir, float3.zero);
-                    characterVel.Linear += knockbackMult * projectile.ValueRO.knockback * knockbackDir;
+                    var knockback = knockbackMult * projectile.ValueRO.knockback * knockbackDir;
+                    if (math.all(math.isfinite(knockback)))
+                        SystemAPI.GetComponentRW<PhysicsVelocity>(character).ValueRW.Linear += knockback;
                 }
             ecb.DestroyEntity(entity);
         }

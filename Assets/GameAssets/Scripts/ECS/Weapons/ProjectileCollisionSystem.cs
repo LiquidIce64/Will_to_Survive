@@ -20,7 +20,7 @@ partial struct ProjectileCollisionSystem : ISystem
     {
         _deadEntityLookup = state.GetComponentLookup<DeadEntityTag>(true);
         _projectileLookup = state.GetComponentLookup<ProjectileData>(true);
-        _damageLookup = state.GetComponentLookup<DamageData>(true);
+        _damageLookup = state.GetComponentLookup<DamageData>(false);
         _velocityLookup = state.GetComponentLookup<PhysicsVelocity>(false);
 
         state.RequireForUpdate<ProjectileData>();
@@ -62,7 +62,7 @@ public partial struct ProcessTriggerEventsJob : ITriggerEventsJob
     [ReadOnly] public Entity player;
     [ReadOnly] public ComponentLookup<DeadEntityTag> deadEntityLookup;
     [ReadOnly] public ComponentLookup<ProjectileData> projectileLookup;
-    [ReadOnly] public ComponentLookup<DamageData> damageLookup;
+    public ComponentLookup<DamageData> damageLookup;
     public ComponentLookup<PhysicsVelocity> velocityLookup;
 
     public EntityCommandBuffer.ParallelWriter ecb;
@@ -93,12 +93,13 @@ public partial struct ProcessTriggerEventsJob : ITriggerEventsJob
             {
                 var damageData = damageLookup[other];
                 damageData.damageTaken += projectileData.damage;
+                damageLookup[other] = damageData;
                 var projectileDir = velocityLookup[projectile].Linear;
                 projectileDir.y = 0f;
                 projectileDir = math.normalizesafe(projectileDir, float3.zero);
                 var characterVel = velocityLookup[other];
                 characterVel.Linear += projectileDir * projectileData.knockback;
-                velocityLookup[other] = characterVel;
+                if (math.all(math.isfinite(characterVel.Linear))) velocityLookup[other] = characterVel;
             }
         }
 

@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool heal = false;
 
     private EntityManager entityManager;
-    private Entity playerEntity;
-    private Entity magnetEntity;
-    private Entity spawnerEntity;
+    private EntityQuery playerQuery;
+    private EntityQuery magnetQuery;
+    private EntityQuery spawnerQuery;
 
     public static PlayerController Instance => instance;
     public static InputSystem_Actions InputActions => inputActions;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             xpPickupRange = value;
-            if (magnetEntity == null) return;
+            if (!magnetQuery.TryGetSingletonEntity<XPMagnetTag>(out Entity magnetEntity)) return;
             var transform = entityManager.GetComponentData<LocalTransform>(magnetEntity);
             transform.Scale = xpPickupRange;
             entityManager.SetComponentData(magnetEntity, transform);
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnLevelUp()
     {
-        if (spawnerEntity == null) return;
+        if (!spawnerQuery.TryGetSingletonEntity<EnemySpawnConfig>(out Entity spawnerEntity)) return;
         var config = entityManager.GetComponentData<EnemySpawnConfig>(spawnerEntity);
         config.level = playerXP.Level;
         entityManager.SetComponentData(spawnerEntity, config);
@@ -62,9 +62,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        playerEntity = entityManager.CreateEntityQuery(typeof(PlayerTag), typeof(CharacterData)).GetSingletonEntity();
-        magnetEntity = entityManager.CreateEntityQuery(typeof(XPMagnetTag), typeof(LocalTransform)).GetSingletonEntity();
-        spawnerEntity = entityManager.CreateEntityQuery(typeof(EnemySpawnConfig)).GetSingletonEntity();
+        playerQuery = entityManager.CreateEntityQuery(typeof(PlayerTag));
+        magnetQuery = entityManager.CreateEntityQuery(typeof(XPMagnetTag));
+        spawnerQuery = entityManager.CreateEntityQuery(typeof(EnemySpawnConfig));
 
         inputActions.UI.Pause.started += _ => PauseMenu.Instance.TogglePause();
     }
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             targetPos.y = transform.position.y;
         }
 
-        if (playerEntity == null) return;
+        if (!playerQuery.TryGetSingletonEntity<PlayerTag>(out Entity playerEntity)) return;
         if (!entityManager.HasComponent<CharacterData>(playerEntity)) return;
         var characterData = entityManager.GetComponentData<CharacterData>(playerEntity);
         characterData.speed = speed;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             enabled = false;
         }
 
-        if (magnetEntity == null) return;
+        if (!magnetQuery.TryGetSingletonEntity<XPMagnetTag>(out Entity magnetEntity)) return;
         var config = entityManager.GetComponentData<XPOrbConfig>(magnetEntity);
         playerXP.AddXP(config.xpGained - xpReceived);
         xpReceived = config.xpGained;
